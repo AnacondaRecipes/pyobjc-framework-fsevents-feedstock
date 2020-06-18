@@ -21,8 +21,8 @@ requirements:
     - setuptools
   run:
     - python
-    - pyobjc-core >=6.1
-    - pyobjc-framework-cocoa >=6.1
+    - pyobjc-core >={{ version }}
+    - pyobjc-framework-cocoa >={{ version }}
 
 test:
   imports:
