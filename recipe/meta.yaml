@@ -1,5 +1,5 @@
 {% set name = "pyobjc-framework-FSEvents" %}
-{% set version = "7.3" %}
+{% set version = "8.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,34 +7,40 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3d12df35cc0b18c3f7c677d6bc870a7ea13a5d1c2f16456c1f445e0b894ddb55
+  sha256: 21928fd0d17ad69f45d41f89228b7446d8faf0d1bba0d71e8e23451196701004
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
-  skip: true  # [(not osx) or py2k]
+  skip: true  # [(not osx) or py<36]
 
 requirements:
   host:
     - pip
     - python
     - setuptools
+    - wheel
   run:
     - python
-    - pyobjc-core >=6.1
-    - pyobjc-framework-cocoa >=6.1
+    - pyobjc-core {{ version }}
+    - pyobjc-framework-cocoa {{ version }}
 
 test:
   imports:
     - FSEvents
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
-  home: https://bitbucket.org/ronaldoussoren/pyobjc
+  home: https://github.com/ronaldoussoren/pyobjc
   license: MIT
   license_family: MIT
   license_file: LICENSE.txt
   summary: Wrappers for the framework FSEvents on macOS
-
+  dev_url: https://github.com/ronaldoussoren/pyobjc/tree/master/pyobjc-framework-FSEvents
+  doc_url: https://github.com/ronaldoussoren/pyobjc
 extra:
   recipe-maintainers:
     - xhochy
