@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
-  skip: true  # [(not osx) or py<36]
+  skip: true  # [(not osx) or py<37]
 
 requirements:
   host:
@@ -39,6 +39,8 @@ about:
   license_family: MIT
   license_file: LICENSE.txt
   summary: Wrappers for the framework FSEvents on macOS
+  description: |
+    Wrappers for the framework FSEvents on macOS
   dev_url: https://github.com/ronaldoussoren/pyobjc/tree/master/pyobjc-framework-FSEvents
   doc_url: https://github.com/ronaldoussoren/pyobjc
 extra:
