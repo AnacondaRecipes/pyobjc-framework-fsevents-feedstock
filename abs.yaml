@@ -1,2 +1,3 @@
-# channels:
-#    c3i_test2: pyobjc_dev_sdk10.15
+channels:
+  - https://staging.continuum.io/prefect/fs/pyobjc-core-feedstock/pr11/b6a3381
+  - https://staging.continuum.io/prefect/fs/pyobjc-framework-cocoa-feedstock/pr11/78fdf09
