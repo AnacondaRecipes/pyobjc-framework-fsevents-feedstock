@@ -1,5 +1,5 @@
 {% set name = "pyobjc-framework-FSEvents" %}
-{% set version = "9.0" %}
+{% set version = "10.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3577e67ce41e9dae9eeb7b31c828b65a0234ab808f5b64779f27b0552ef5f265
+  sha256: f5dee8cfbd878006814db264c5f70aeb1a43c06620e98f628ca6c0008beb1b1d
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: true  # [(not osx) or py<38]
 
 requirements:
@@ -22,8 +22,8 @@ requirements:
     - wheel
   run:
     - python
-    - pyobjc-core {{ version }}
-    - pyobjc-framework-cocoa {{ version }}
+    - pyobjc-core >={{ version }}
+    - pyobjc-framework-cocoa >={{ version }}
 
 test:
   imports:
