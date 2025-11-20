@@ -1,18 +1,19 @@
 {% set name = "pyobjc-framework-FSEvents" %}
 {% set version = "12.1" %}
+{% set pypi_name = name|replace("-", "_")|lower %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/p/pyobjc-framework-FSEvents/pyobjc_framework_fsevents-12.1.tar.gz
+  url: https://pypi.org/packages/source/{{ pypi_name[0] }}/{{ name }}/{{ pypi_name }}-{{ version }}.tar.gz
   sha256: a22350e2aa789dec59b62da869c1b494a429f8c618854b1383d6473f4c065a02
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: true  # [(not osx) or py<310]
+  skip: true  # [not osx or py<310]
 
 requirements:
   host:
@@ -22,8 +23,8 @@ requirements:
     - wheel
   run:
     - python
-    - pyobjc-core >=12.1
-    - pyobjc-framework-cocoa >=12.1
+    - pyobjc-core >={{ version }}
+    - pyobjc-framework-cocoa >={{ version }}
 
 test:
   imports:
@@ -32,6 +33,7 @@ test:
     - pip
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
 
 about:
   home: https://github.com/ronaldoussoren/pyobjc
