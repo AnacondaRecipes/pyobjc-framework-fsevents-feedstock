@@ -25,6 +25,8 @@ requirements:
     - python
     - pyobjc-core >={{ version }}
     - pyobjc-framework-cocoa >={{ version }}
+  run_constrained:
+    - __osx >=10.5
 
 test:
   imports:
